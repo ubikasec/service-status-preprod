@@ -1,0 +1,58 @@
+{{/*
+  Project-level override of themes/cstate/layouts/partials/header.html
+  (cState 6.0.1).
+
+  PREPROD-ONLY FILE: it adds a "PREPRODUCTION" badge next to the logo so this
+  site cannot be mistaken for the production one (https://status.ubika.io).
+  There is no equivalent file in the production repository and this one must
+  never be ported there.
+
+  Everything else is identical to the theme template; when upgrading cState,
+  diff it against themes/cstate/layouts/partials/header.html and re-apply the
+  badge.
+
+  Badge colours come from the UBIKA state palette (an environment marker is a
+  status, not a brand accent): warning-on-dark #FFB84D with ink #1A1526 text,
+  contrast 10.5:1.
+*/}}
+{{ $badge := "display:inline-block;flex:none;padding:4px 8px;border-radius:4px;background:#FFB84D;color:#1A1526;font-size:11px;font-weight:700;line-height:1;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;" }}
+
+{{ if .Site.Params.enableCustomHTML }}
+  {{ partial "custom/above-header" . }}
+{{ end }}
+
+{{ if .Site.Params.useLargeHeaderDesign }}
+<div class="header header--large">
+  <div class="contain contain--more center">
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a href="{{ .Site.BaseURL }}" class="header__logo">
+        {{ if .Site.Params.useLogo }}
+          <img src="{{ relURL .Site.Params.logo }}" alt="{{ .Site.Title }}">
+            {{ else }}
+          <h1>{{ .Site.Title }}</h1>
+        {{ end }}
+      </a>
+      <span style="{{ $badge | safeCSS }}">Preproduction</span>
+    </div>
+  </div>
+</div>
+{{ else }}
+<div class="header">
+  <div class="contain">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <a href="{{ .Site.BaseURL }}" class="header__logo header__logo--small">
+        {{ if .Site.Params.useLogo }}
+          <img src="{{ relURL .Site.Params.logo }}" alt="{{ .Site.Title }}">
+            {{ else }}
+          <h1>{{ .Site.Title }}</h1>
+        {{ end }}
+      </a>
+      <span style="{{ $badge | safeCSS }}">Preproduction</span>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ if .Site.Params.enableCustomHTML }}
+  {{ partial "custom/below-header" . }}
+{{ end }}
