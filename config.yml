@@ -64,7 +64,7 @@ buildFuture: true
 #
 # See:  https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 # Also: https://www.w3schools.com/tags/ref_language_codes.asp
-languageCode: en
+locale: en
 
 # What translation file should cState use?
 # You can also define whether missing
@@ -143,7 +143,6 @@ params:
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
   categories:
-    - name: Cloud Protector Legacy (eu-west-2)
     - name: Cloud Protector
 
   # These are your systems. Change them to
@@ -154,21 +153,16 @@ params:
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
   systems:
-    - name: Console (legacy)
-      displayName: Console
-      category: Cloud Protector Legacy (eu-west-2)
-    - name: Runtime (legacy)
-      displayName: Runtime
-      category: Cloud Protector Legacy (eu-west-2)
-    - name: Console (gra9)
+    - name: Console
       displayName: Console
       category: Cloud Protector
-    - name: API (gra9)
+    - name: API
       displayName: API
       category: Cloud Protector
-# keep the global runtime for zabbix check
+# keep the global runtime for zabbix check: stay in line with user configuration
+# https://zabbix.ubika.io/zabbix.php?action=user.edit&userid=23
 # manual information can go in specific runtime if only one is impaired
-    - name: Runtime (eu-west-2)
+    - name: Runtime
       displayName: Runtime - Global
       category: Cloud Protector
     - name: Runtime (gra11)
